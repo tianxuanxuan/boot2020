@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: boot-starter-demo
+    name: cloud-payment-service
 
   datasource:
     # 当前数据源操作类型
@@ -14,6 +14,13 @@ spring:
     username: root
     password: 123456
 
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      #payment服务注册到Eureka集群
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml

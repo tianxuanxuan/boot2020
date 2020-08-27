@@ -2,16 +2,16 @@ package com.xgit.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * Created by tianxuanxuan
- * On 2020-08-27 11:17
+ * On 2020-08-27 15:59
  */
 @SpringBootApplication
-@EnableEurekaClient
-public class BootStarterOrder80Application {
+@EnableEurekaServer
+public class BootStarterEurekaServerMain2 {
     public static void main(String[] args) {
-        SpringApplication.run(BootStarterOrder80Application.class, args);
+        SpringApplication.run(BootStarterEurekaServerMain2.class, args);
     }
 }

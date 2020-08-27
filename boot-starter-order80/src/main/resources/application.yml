@@ -2,6 +2,9 @@ server:
   port: 80
 
 spring:
+  application:
+    name: cloud-order-service
+
   datasource:
     # 当前数据源操作类型
     type: com.alibaba.druid.pool.DruidDataSource
@@ -10,3 +13,11 @@ spring:
     url: jdbc:mysql://localhost:3306/boot_starter_demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: 123456
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      #order服务注册到Eureka集群
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
