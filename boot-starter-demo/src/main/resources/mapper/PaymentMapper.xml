@@ -16,4 +16,13 @@
     <select id="getPaymentById" parameterType="Long" resultMap="BaseResultMap">
         select * from payment where id=#{id};
     </select>
+
+    <update id="update" parameterType="Payment">
+        update payment set serial = #{serial}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="Long">
+        delete from payment where id=#{id}
+    </delete>
 </mapper>

@@ -41,4 +41,26 @@ public class PaymentController {
             return new CommonResult<Payment>(444, "没有查到对应记录 id："+id);
         }
     }
+
+    @PostMapping(value = "/payment/update")
+    public CommonResult<Integer> update(Payment payment){
+        int result = paymentService.update(payment);
+        log.info("*****更新结果:"+result);
+        if (result > 0){
+            return new CommonResult<Integer>(200, "更新数据成功", result);
+        }else {
+            return new CommonResult<Integer>(444, "更新数据失败");
+        }
+    }
+
+    @GetMapping(value = "/payment/delete/{id}")
+    public CommonResult<Integer> deleteById(@PathVariable("id") Long id){
+        int result = paymentService.deleteById(id);
+        log.info("*****删除结果:"+result);
+        if (result > 0){
+            return new CommonResult<Integer>(200, "删除数据成功", result);
+        }else {
+            return new CommonResult<Integer>(444, "删除数据失败");
+        }
+    }
 }
