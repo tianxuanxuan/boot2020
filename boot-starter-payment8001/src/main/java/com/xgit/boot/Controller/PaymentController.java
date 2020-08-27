@@ -5,10 +5,7 @@ import com.xgit.boot.entities.Payment;
 import com.xgit.boot.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by tianxuanxuan
@@ -21,7 +18,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping(value = "/payment/create")
-    public CommonResult<Integer> create(Payment payment){
+    public CommonResult<Integer> create(@RequestBody Payment payment){
         int result = paymentService.create(payment);
         log.info("*****插入结果:"+result);
         if (result > 0){
@@ -43,7 +40,7 @@ public class PaymentController {
     }
 
     @PostMapping(value = "/payment/update")
-    public CommonResult<Integer> update(Payment payment){
+    public CommonResult<Integer> update(@RequestBody Payment payment){
         int result = paymentService.update(payment);
         log.info("*****更新结果:"+result);
         if (result > 0){

@@ -9,9 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>boot-starter-demo</artifactId>
+    <artifactId>order80</artifactId>
 
     <dependencies>
+        <dependency><!-- 引用自己定义的api通用包，可以使用Payment支付Entity -->
+            <groupId>com.xgit</groupId>
+            <artifactId>boot-starter-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -46,5 +51,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 
 </project>

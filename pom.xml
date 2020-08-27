@@ -10,7 +10,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>boot-starter-demo</module>
+        <module>boot-starter-payment8001</module>
+        <module>boot-starter-order80</module>
+        <module>boot-starter-commons</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
