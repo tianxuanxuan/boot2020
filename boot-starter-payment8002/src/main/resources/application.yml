@@ -1,9 +1,9 @@
 server:
-  port: 80
+  port: 8002
 
 spring:
   application:
-    name: cloud-order-service
+    name: cloud-payment-service
 
   datasource:
     # 当前数据源操作类型
@@ -19,10 +19,14 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      #order服务注册到Eureka集群
+      #payment服务注册到Eureka集群
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
   instance:
     #更改主机名
-    instance-id: order80
+    instance-id: payment8002
     #显示ip
     prefer-ip-address: true
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.xgit.boot.entities
