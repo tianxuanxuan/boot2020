@@ -6,7 +6,10 @@ import com.xgit.boot.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by tianxuanxuan
@@ -18,6 +21,9 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @Autowired
     private PaymentService paymentService;
@@ -71,5 +77,19 @@ public class PaymentController {
             return new CommonResult<Integer>(444, "删除数据失败serverPort:"
                     + serverPort);
         }
+    }
+
+    @GetMapping(value = "/payment/discovery")
+    public Object discovery(){
+        discoveryClient
+                .getServices()
+                .forEach(s -> log.info("*****element:" + s));
+
+        discoveryClient
+                .getInstances("cloud-payment-service")
+                .forEach(instance -> log.info(instance.getServiceId()+"\t" + instance.getHost() +
+                        "\t" + instance.getPort() +"\t" + instance.getUri()));
+
+        return this.discoveryClient;
     }
 }

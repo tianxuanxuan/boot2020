@@ -4,6 +4,7 @@ import com.xgit.boot.entities.CommonResult;
 import com.xgit.boot.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,9 @@ import org.springframework.web.client.RestTemplate;
 public class OrderController {
     //public static final String PAYMENT_URL = "http://localhost:8001";
     public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @Autowired
     RestTemplate restTemplate;
@@ -45,5 +49,19 @@ public class OrderController {
     public CommonResult delete(@PathVariable("id") Long id){
         return restTemplate.getForObject(PAYMENT_URL + "/payment/delete/" + id,
                 CommonResult.class);
+    }
+
+    @GetMapping(value = "/consumer/discovery")
+    public Object discovery(){
+        discoveryClient
+                .getServices()
+                .forEach(s -> log.info("*****element:" + s));
+
+        discoveryClient
+                .getInstances("cloud-payment-service")
+                .forEach(instance -> log.info(instance.getServiceId()+"\t" + instance.getHost() +
+                        "\t" + instance.getPort() +"\t" + instance.getUri()));
+
+        return this.discoveryClient;
     }
 }

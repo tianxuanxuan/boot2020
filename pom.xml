@@ -16,6 +16,8 @@
         <module>boot-starter-eureka-server7001</module>
         <module>boot-starter-eureka-server7002</module>
         <module>boot-starter-payment8002</module>
+        <module>boot-starter-payment8004</module>
+        <module>boot-starter-comsumerzk-order80</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
