@@ -1,9 +1,12 @@
 package com.xgit.boot.controller;
 
+import com.sun.jndi.toolkit.url.Uri;
 import com.xgit.boot.entities.CommonResult;
 import com.xgit.boot.entities.Payment;
+import com.xgit.boot.lb.LoadBalancer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.net.URI;
+import java.util.List;
 
 /**
  * Created by tianxuanxuan
@@ -26,7 +32,10 @@ public class OrderController {
     private DiscoveryClient discoveryClient;
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private LoadBalancer loadBalancer;
 
     @PostMapping("/consumer/payment/create")
     public CommonResult create(Payment payment){
@@ -75,5 +84,16 @@ public class OrderController {
                         "\t" + instance.getPort() +"\t" + instance.getUri()));
 
         return this.discoveryClient;
+    }
+
+    @GetMapping("/consumer/payment/lb")
+    public String getPaymentLB(){
+        List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
+        if (instances == null || instances.size() <= 0){
+            return null;
+        }
+        ServiceInstance serviceInstance = loadBalancer.instances(instances);
+        URI uri = serviceInstance.getUri();
+        return restTemplate.getForObject(uri + "/payment/lb", String.class);
     }
 }
