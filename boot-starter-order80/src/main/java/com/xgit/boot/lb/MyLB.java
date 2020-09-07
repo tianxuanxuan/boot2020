@@ -1,6 +1,5 @@
 package com.xgit.boot.lb;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.stereotype.Component;
 

@@ -1,5 +1,6 @@
 package com.xgit.boot.Controller;
 
+import com.mysql.cj.util.TimeUtil;
 import com.xgit.boot.entities.CommonResult;
 import com.xgit.boot.entities.Payment;
 import com.xgit.boot.service.PaymentService;
@@ -10,6 +11,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by tianxuanxuan
@@ -95,6 +97,16 @@ public class PaymentController {
 
     @GetMapping(value = "/payment/lb")
     public String getPaymentLb(){
+        return serverPort;
+    }
+
+    @GetMapping(value = "/payment/timeout")
+    public String paymentFeignTimeOut(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return serverPort;
     }
 }

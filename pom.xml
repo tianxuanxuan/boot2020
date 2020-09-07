@@ -20,6 +20,8 @@
         <module>boot-starter-comsumerzk-order80</module>
         <module>boot-starter-consul-payment8006</module>
         <module>boot-starter-consulconsumer-order80</module>
+        <module>boot-starter-consumer-feign-order80</module>
+        <module>boot-starter-hystrix-payment8001</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
