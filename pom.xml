@@ -24,6 +24,7 @@
         <module>boot-starter-hystrix-payment8001</module>
         <module>boot-starter-hystrix-feign-order80</module>
         <module>boot-starter-hystrix-dashboard-9001</module>
+        <module>boot-starter-gateway-gateway9527</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
