@@ -9,13 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>boot-starter-gateway-gateway9527</artifactId>
+    <artifactId>boot-starter-config-center3344</artifactId>
 
     <dependencies>
-        <!--gateway-->
+        <!--config server-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
         <dependency><!-- 引用自己定义的api通用包，可以使用Payment支付Entity -->
             <groupId>com.xgit</groupId>
