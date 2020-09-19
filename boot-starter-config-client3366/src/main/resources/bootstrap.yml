@@ -1,9 +1,9 @@
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application:
-    name: config-client-3355
+    name: config-client-3366
 
   cloud:
     #Config客户端配置
@@ -28,7 +28,7 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka
   instance:
     #更改主机名
-    instance-id: config-client-3355
+    instance-id: config-client-3366
     #显示ip
     prefer-ip-address: true
 
