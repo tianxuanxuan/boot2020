@@ -36,6 +36,9 @@
         <module>boot-starter-cloudalibaba-consumer-nacos-order83</module>
         <module>boot-starter-cloudalibaba-config-nacos-client3377</module>
         <module>boot-starter-cloudalibaba-sentinel-service8401</module>
+        <module>boot-starter-cloudalibaba-provider-payment9003</module>
+        <module>boot-starter-cloudalibaba-provider-payment9004</module>
+        <module>boot-starter-cloudalibaba-consumer-nacos-order84</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
@@ -123,8 +126,16 @@
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-
-    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork><!--必须添加这个配置-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
