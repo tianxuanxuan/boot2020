@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.xgit.boot.entities.CommonResult;
 import com.xgit.boot.entities.Payment;
+import com.xgit.boot.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +25,9 @@ public class CircleBreakerController {
 
     @Value("${server-url.nacos-user-service}")
     private String serverURL;
+
+    @Autowired
+    private PaymentService paymentService;
 
     @GetMapping(value = "/consumer/fallback/{id}")
     //@SentinelResource(value = "fallback", fallback = "handlerFallback") //负责运行时异常处理
@@ -51,5 +55,10 @@ public class CircleBreakerController {
     public CommonResult blockHandler(@PathVariable Long id, BlockException e) {
         Payment payment = new Payment(id,"null");
         return new CommonResult(444,"blockHandler-sentinel 限流，BlockException： " + e.getMessage(), payment);
+    }
+
+    @GetMapping("/consumer/paymentSQL/{id}")
+    public CommonResult<Payment> paymentSQL(@PathVariable("id") Long id){
+        return paymentService.paymentSQL(id);
     }
 }
