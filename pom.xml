@@ -39,6 +39,9 @@
         <module>boot-starter-cloudalibaba-provider-payment9003</module>
         <module>boot-starter-cloudalibaba-provider-payment9004</module>
         <module>boot-starter-cloudalibaba-consumer-nacos-order84</module>
+        <module>distributed-security-uaa</module>
+        <module>distributed-security-order</module>
+        <module>seata-order-service2001</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
@@ -58,6 +61,8 @@
         <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
         <mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
         <hutool-all.version>5.1.0</hutool-all.version>
+        <spring-security-jwt.version>1.0.10.RELEASE</spring-security-jwt.version>
+        <spring-security-oauth2-autoconfigure.version>2.1.3.RELEASE</spring-security-oauth2-autoconfigure.version>
     </properties>
 
 
@@ -122,6 +127,18 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+
+            <!--spring security oauth2-->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-jwt</artifactId>
+                <version>${spring-security-jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${spring-security-oauth2-autoconfigure.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
