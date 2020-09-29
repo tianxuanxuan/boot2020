@@ -5,6 +5,7 @@ import com.xgit.boot.domain.Order;
 import com.xgit.boot.service.AccountService;
 import com.xgit.boot.service.OrderService;
 import com.xgit.boot.service.StorageService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
     private AccountService accountService;
 
     @Override
+    @GlobalTransactional(name = "fsp_tx_group", rollbackFor = Exception.class)
     public void create(Order order) {
         // 1 新建订单
         log.info("----->开始新建订单");

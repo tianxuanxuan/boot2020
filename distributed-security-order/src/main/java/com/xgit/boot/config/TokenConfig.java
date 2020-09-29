@@ -3,7 +3,6 @@ package com.xgit.boot.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
@@ -13,7 +12,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  */
 @Configuration
 public class TokenConfig {
-    public final String SIGNING_KEY = "uaa123";
+    public final String SIGNING_KEY = "uaa123"; //对称加密，秘钥和权限服务一致
     //令牌存储策略，基于内存
    /* @Bean
     public TokenStore tokenStore(){
