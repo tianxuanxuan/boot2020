@@ -1,0 +1,33 @@
+server:
+  port: 53010
+
+spring:
+  application:
+    name: gateway‐server
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      #payment服务注册到Eureka集群
+      defaultZone: http://eureka7001.com:7001/eureka
+
+zuul:
+  add-host-header: true #表示API网关在进行请求路由转发前为请求设置Host头信息
+  retryable: true
+  routes:
+    uaa-service:
+      stripPrefix: false
+      path: /uaa/**
+
+    order-service:
+      stripPrefix: false
+      path: /order/**
+
+
+
+
+
+

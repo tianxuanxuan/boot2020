@@ -1,5 +1,7 @@
 server:
   port: 53020
+  servlet:
+    context-path: /uaa
 
 spring:
   application:

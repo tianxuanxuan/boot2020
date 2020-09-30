@@ -3,17 +3,17 @@ package com.xgit.boot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
  * Created by tianxuanxuan
- * On 2020-09-28 10:49
+ * On 2020-09-30 10:44
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = "com.xgit.boot")
-public class OrderMain53030 {
+@EnableZuulProxy
+public class ZuulMain53010 {
     public static void main(String[] args) {
-        SpringApplication.run(OrderMain53030.class, args);
+        SpringApplication.run(ZuulMain53010.class, args);
     }
 }

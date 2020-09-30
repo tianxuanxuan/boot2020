@@ -44,6 +44,7 @@
         <module>seata-order-service2001</module>
         <module>seata-storage-service2002</module>
         <module>seata-account-service2003</module>
+        <module>distributed-security-gateway</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
