@@ -39,8 +39,9 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             // 1. 解析token
             String json = EncryptUtil.decodeUTF8StringBase64(token);
             JSONObject userJson = JSON.parseObject(json);
-            UserDto user = new UserDto();
-            user.setUsername(userJson.getString("principal"));
+           /* UserDto user = new UserDto();
+            user.setUsername(userJson.getString("principal"));*/
+            UserDto user = JSON.parseObject(userJson.getString("principal"), UserDto.class);
                 JSONArray authoritiesArray = userJson.getJSONArray("authorities");
             String[] authorities =authoritiesArray.toArray(new String[authoritiesArray.size()]);
 

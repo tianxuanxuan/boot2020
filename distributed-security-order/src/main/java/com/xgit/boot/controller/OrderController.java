@@ -16,6 +16,6 @@ public class OrderController {
     @PreAuthorize("hasAnyAuthority('p1')")
     public String r1(){
         UserDto user = (UserDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user.getUsername() + "访问资源1";
+        return user.getFullname() + "访问资源1";
     }
 }
