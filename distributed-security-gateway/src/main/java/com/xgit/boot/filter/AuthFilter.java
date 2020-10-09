@@ -50,31 +50,36 @@ public class AuthFilter extends ZuulFilter {
         if (!(authentication instanceof OAuth2Authentication)){
             return null;
         }
+        //判断是OAuth2Authentication，就可以将authentication转为OAuth2Authentication
         OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) authentication;
         Authentication userAuthentication = oAuth2Authentication.getUserAuthentication();
-        Object principle = userAuthentication.getPrincipal();
-
-        /*
-         * 2.组装明文token，转发给微服务，放入header，名称为json-token
-         * jdk8 使用map作用于每个元素收集数据
-         */
 
         if (userAuthentication == null){
             return null;
         }
 
+        //得到请求身份
+        String principle = userAuthentication.getName();
+
+        /*
+         * 2.组装明文token，转发给微服务，放入header，名称为json-token
+         * jdk8 使用map作用于每个元素收集数据
+         */
+        //得到请求权限
         List<String> authorities = userAuthentication
                 .getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
+        //请求中其他请求参数
         OAuth2Request oAuth2Request = oAuth2Authentication.getOAuth2Request();
         Map<String, String> requestParameters = oAuth2Request.getRequestParameters();
         Map<String, Object> jsonToken = new HashMap<>(requestParameters);
-        jsonToken.put("principal", userAuthentication.getName());
+
+        jsonToken.put("principal", principle);
         jsonToken.put("authorities", authorities);
-        ctx.addZuulRequestHeader("json‐token",
+        ctx.addZuulRequestHeader("json-token",
                 EncryptUtil.encodeUTF8StringBase64(JSON.toJSONString(jsonToken)));
         return null;
     }

@@ -17,7 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // .antMatchers("/r/r1").hasAuthority("p2") 基于web的授权不用，因为我们用的是基于方法的授权
                 // .antMatchers("/r/r2").hasAuthority("p2")
-                .antMatchers("/r/**").authenticated()//所有/r/**的请求必须认证通过
-                .anyRequest().permitAll();//除了/r/**，其它的请求可以访问
+                .antMatchers("/order/r/**").authenticated()//所有/r/**的请求必须认证通过
+                .anyRequest().permitAll();//"/order/r/**"，其它的请求可以访问
     }
 }
